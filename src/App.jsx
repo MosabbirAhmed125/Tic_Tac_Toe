@@ -9,6 +9,7 @@ function App() {
 			<Toaster position="top-center" reverseOrder={false} />
 			<Routes>
 				<Route path="/" element={<Game></Game>}></Route>
+				<Route path="*" element={<Navigate to="/" />} />
 			</Routes>
 		</div>
 	);

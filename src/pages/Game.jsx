@@ -245,9 +245,23 @@ export default function Game() {
 
 	return (
 		<div className="bg-cod-gray-950 h-screen flex flex-col items-center justify-center">
-			<p className="relative font-bungee text-6xl text-red-ribbon-500">
-				Tic Tac Toe
-			</p>
+			<div className="flex items-center group">
+				<img
+					src="icon.svg"
+					alt="icon"
+					className="w-20 h-20 mr-7 transition-opacity ease-in-out 
+					duration-300 group-hover:opacity-0 absolute"
+				/>
+				<img
+					src="icon_alt.svg"
+					alt="icon_alt"
+					className="w-20 h-20 mr-7 transition-opacity ease-in-out 
+					duration-300 opacity-0 group-hover:opacity-100 absolute"
+				/>
+				<p className="relative font-bungee text-6xl text-red-ribbon-500 ml-24">
+					Tic Tac Toe
+				</p>
+			</div>
 			<p className="relative font-borel text-lg text-pearl-bush-200 mt-3">
 				by mosabbir ahmed
 			</p>
