@@ -411,7 +411,7 @@ export default function Game() {
 			</AnimatePresence>
 
 			<a
-				href="https://x.com/"
+				href="https://github.com/MosabbirAhmed125/Tic_Tac_Toe"
 				target="_blank"
 				rel="noopener noreferrer"
 				className="absolute left-10 bottom-10 flex items-center gap-2 text-red-ribbon-500 text-md font-ubuntu font-bold hover:underline hover:underline-offset-4"
