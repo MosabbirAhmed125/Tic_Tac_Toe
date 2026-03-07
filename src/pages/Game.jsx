@@ -279,13 +279,25 @@ export default function Game() {
 				></Board>
 			</div>
 
+			<a
+				href="https://github.com/MosabbirAhmed125/Tic_Tac_Toe"
+				target="_blank"
+				rel="noopener noreferrer"
+				className="hidden max-sm:flex fixed bottom-6 left-1/2 -translate-x-1/2 z-100 items-center gap-3 text-red-ribbon-500 text-base font-ubuntu font-bold hover:underline hover:underline-offset-4"
+			>
+				<div className="w-8 h-8 bg-pearl-bush-200 flex items-center justify-center rounded-md">
+					<img src="github.svg" alt="GitHub" className="w-5 h-5" />
+				</div>
+				View Source Code
+			</a>
+
 			<AnimatePresence>
 				{showDifficultyModal && (
-					<div className="fixed inset-0 z-50 flex items-center justify-center max-sm:bg-cod-gray-950">
+					<div className="fixed inset-0 z-50 flex items-center justify-center max-sm:bg-cod-gray-950 pointer-events-none">
 						<motion.div
 							className="absolute w-160 h-180 bg-cod-gray-950 border-3 border-pearl-bush-200 
 	            			rounded-2xl flex flex-col items-center justify-center shadow-2xl shadow-pearl-bush-200/50
-							max-sm:relative max-sm:w-[92vw] max-sm:h-auto max-sm:py-16 max-sm:px-6"
+							max-sm:relative max-sm:w-[92vw] max-sm:h-auto max-sm:py-16 max-sm:px-6 pointer-events-auto"
 							initial={{ scale: 0.5, opacity: 0 }}
 							animate={{ scale: 1, opacity: 1 }}
 							exit={{ scale: 0.5, opacity: 0 }}
@@ -360,11 +372,11 @@ export default function Game() {
 
 			<AnimatePresence>
 				{showWinnerModal && (
-					<div className="fixed inset-0 z-50 flex items-center justify-center max-sm:bg-cod-gray-950">
+					<div className="fixed inset-0 z-50 flex items-center justify-center max-sm:bg-cod-gray-950 pointer-events-none">
 						<motion.div
 							className="absolute w-160 h-180 bg-cod-gray-950 border-3 border-pearl-bush-200 
 	            			rounded-2xl flex flex-col items-center justify-center shadow-2xl shadow-pearl-bush-200/50
-							max-sm:relative max-sm:w-[92vw] max-sm:h-auto max-sm:py-16 max-sm:px-6"
+							max-sm:relative max-sm:w-[92vw] max-sm:h-auto max-sm:py-16 max-sm:px-6 pointer-events-auto"
 							initial={{ scale: 0.5, opacity: 0 }}
 							animate={{ scale: 1, opacity: 1 }}
 							exit={{ scale: 0.5, opacity: 0 }}
@@ -438,10 +450,13 @@ export default function Game() {
 				href="https://github.com/MosabbirAhmed125/Tic_Tac_Toe"
 				target="_blank"
 				rel="noopener noreferrer"
-				className="flex fixed bottom-6 left-1/2 -translate-x-1/2 z-50 items-center gap-3 text-red-ribbon-500 text-base font-ubuntu font-bold hover:underline hover:underline-offset-4"
+				className="absolute left-10 bottom-10 flex items-center gap-2 text-red-ribbon-500 text-md font-ubuntu font-bold hover:underline hover:underline-offset-4 max-sm:hidden z-100"
 			>
-				<div className="w-8 h-8 bg-pearl-bush-200 flex items-center justify-center rounded-md">
-					<img src="/github.svg" alt="GitHub" className="w-5 h-5" />
+				<div
+					className="w-6 h-6 bg-pearl-bush-200 text-cod-gray-950 
+					flex items-center justify-center rounded-md"
+				>
+					<img src="github.svg" alt="GitHub" className="w-4 h-4" />
 				</div>
 				View Source Code
 			</a>
