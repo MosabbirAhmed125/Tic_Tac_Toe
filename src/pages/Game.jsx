@@ -244,169 +244,193 @@ export default function Game() {
 	}
 
 	return (
-		<div className="bg-cod-gray-950 h-screen flex flex-col items-center justify-center">
-			<div className="flex items-center group">
+		<div className="bg-cod-gray-950 h-screen flex flex-col items-center justify-center max-sm:justify-center max-sm:py-10">
+			<div className="flex items-center group max-sm:relative">
 				<img
 					src="icon.svg"
 					alt="icon"
 					className="w-20 h-20 mr-7 transition-opacity ease-in-out 
-					duration-300 group-hover:opacity-0 absolute"
+					duration-300 group-hover:opacity-0 absolute max-sm:w-14 max-sm:h-14"
 				/>
 				<img
 					src="icon_alt.svg"
 					alt="icon_alt"
 					className="w-20 h-20 mr-7 transition-opacity ease-in-out 
-					duration-300 opacity-0 group-hover:opacity-100 absolute"
+					duration-300 opacity-0 group-hover:opacity-100 absolute max-sm:w-14 max-sm:h-14"
 				/>
-				<p className="relative font-bungee text-6xl text-red-ribbon-500 ml-24">
-					Tic Tac Toe
-				</p>
+				<div className="relative ml-24 max-sm:ml-20 flex flex-col">
+					<p className="font-bungee text-6xl text-red-ribbon-500 max-sm:text-4xl leading-tight">
+						Tic Tac Toe
+					</p>
+					<p className="font-borel text-lg text-pearl-bush-200 text-center mt-1">
+						by mosabbir ahmed
+					</p>
+				</div>
 			</div>
-			<p className="relative font-borel text-lg text-pearl-bush-200 mt-3">
-				by mosabbir ahmed
-			</p>
-			<br />
-			<br />
-			<Board
-				board={board}
-				handleClick={handleClick}
-				gameLocked={gameLocked}
-				winningLine={winningLine}
-			></Board>
+			<br className="max-sm:hidden" />
+			<br className="max-sm:hidden" />
+
+			<div className="max-sm:mt-10 max-sm:mb-10">
+				<Board
+					board={board}
+					handleClick={handleClick}
+					gameLocked={gameLocked}
+					winningLine={winningLine}
+				></Board>
+			</div>
 
 			<AnimatePresence>
 				{showDifficultyModal && (
-					<motion.div
-						className="absolute w-160 h-180 bg-cod-gray-950 border-3 border-pearl-bush-200 
-            			rounded-2xl flex flex-col items-center justify-center shadow-2xl shadow-pearl-bush-200/50"
-						initial={{ scale: 0.5, opacity: 0 }}
-						animate={{ scale: 1, opacity: 1 }}
-						exit={{ scale: 0.5, opacity: 0 }}
-						transition={{
-							type: "spring",
-							stiffness: 300,
-							damping: 20,
-							mass: 0.8,
-						}}
-					>
-						<p
-							className="scale-110 text-5xl text-red-ribbon-500 font-bungee 
-							flex items-center justify-center gap-3 mb-15"
+					<div className="fixed inset-0 z-50 flex items-center justify-center max-sm:bg-cod-gray-950">
+						<motion.div
+							className="absolute w-160 h-180 bg-cod-gray-950 border-3 border-pearl-bush-200 
+	            			rounded-2xl flex flex-col items-center justify-center shadow-2xl shadow-pearl-bush-200/50
+							max-sm:relative max-sm:w-[92vw] max-sm:h-auto max-sm:py-16 max-sm:px-6"
+							initial={{ scale: 0.5, opacity: 0 }}
+							animate={{ scale: 1, opacity: 1 }}
+							exit={{ scale: 0.5, opacity: 0 }}
+							transition={{
+								type: "spring",
+								stiffness: 300,
+								damping: 20,
+								mass: 0.8,
+							}}
 						>
-							Welcome!
-						</p>
-						<p
-							className="scale-110 text-3xl text-pearl-bush-200 font-ubuntu 
-                			font-bold flex items-center justify-center gap-3 mb-15"
-						>
-							Select a difficulty level
-						</p>
+							<p
+								className="scale-110 text-5xl text-red-ribbon-500 font-bungee 
+								flex items-center justify-center gap-3 mb-15
+								max-sm:scale-100 max-sm:text-4xl max-sm:mb-8"
+							>
+								Welcome!
+							</p>
+							<p
+								className="scale-110 text-3xl text-pearl-bush-200 font-ubuntu 
+                			font-bold flex items-center justify-center gap-3 mb-15
+							max-sm:scale-100 max-sm:text-2xl max-sm:mb-8 max-sm:text-center"
+							>
+								Select a difficulty level
+							</p>
 
-						<button
-							className="scale-110 font-bungee text-cod-gray-950 text-[18px] bg-green-500 bg-center 
-							rounded-lg p-2 border-transparent transition delay-75 duration-150 ease-in-out 
-							hover:bg-pearl-bush-200 hover:text-green-500 hover:shadow-green-500/50 hover:shadow-lg 
-							hover:scale-120 w-40 h-12 cursor-pointer mb-7"
-							onClick={() => {
-								setDifficulty("easy");
-								setShowDifficultyModal(false);
-							}}
-						>
-							Easy
-						</button>
-						<button
-							className="scale-110 font-bungee text-cod-gray-950 text-[18px] bg-amber-400 bg-center 
-							rounded-lg p-2 border-transparent transition delay-75 duration-150 ease-in-out 
-							hover:bg-pearl-bush-200 hover:text-amber-400 hover:shadow-amber-400/50 hover:shadow-lg 
-							hover:scale-120 w-40 h-12 cursor-pointer mb-7"
-							onClick={() => {
-								setDifficulty("medium");
-								setShowDifficultyModal(false);
-							}}
-						>
-							Medium
-						</button>
-						<button
-							className="scale-110 font-bungee text-cod-gray-950 text-[18px] bg-red-ribbon-500 bg-center 
-							rounded-lg p-2 border-transparent transition delay-75 duration-150 ease-in-out 
-							hover:bg-pearl-bush-200 hover:text-red-ribbon-500 hover:shadow-red-ribbon-500/50 hover:shadow-lg 
-							hover:scale-120 w-40 h-12 cursor-pointer"
-							onClick={() => {
-								setDifficulty("hard");
-								setShowDifficultyModal(false);
-							}}
-						>
-							Hard
-						</button>
-					</motion.div>
+							<button
+								className="scale-110 font-bungee text-cod-gray-950 text-[18px] bg-green-500 bg-center 
+								rounded-lg p-2 border-transparent transition delay-75 duration-150 ease-in-out 
+								hover:bg-pearl-bush-200 hover:text-green-500 hover:shadow-green-500/50 hover:shadow-lg 
+								hover:scale-120 w-40 h-12 cursor-pointer mb-7
+								max-sm:scale-100 max-sm:mb-4 max-sm:hover:scale-105
+								max-sm:active:bg-pearl-bush-200 max-sm:active:text-green-500 max-sm:active:scale-95"
+								onClick={() => {
+									setDifficulty("easy");
+									setShowDifficultyModal(false);
+								}}
+							>
+								Easy
+							</button>
+							<button
+								className="scale-110 font-bungee text-cod-gray-950 text-[18px] bg-amber-400 bg-center 
+								rounded-lg p-2 border-transparent transition delay-75 duration-150 ease-in-out 
+								hover:bg-pearl-bush-200 hover:text-amber-400 hover:shadow-amber-400/50 hover:shadow-lg 
+								hover:scale-120 w-40 h-12 cursor-pointer mb-7
+								max-sm:scale-100 max-sm:mb-4 max-sm:hover:scale-105
+								max-sm:active:bg-pearl-bush-200 max-sm:active:text-amber-400 max-sm:active:scale-95"
+								onClick={() => {
+									setDifficulty("medium");
+									setShowDifficultyModal(false);
+								}}
+							>
+								Medium
+							</button>
+							<button
+								className="scale-110 font-bungee text-cod-gray-950 text-[18px] bg-red-ribbon-500 bg-center 
+								rounded-lg p-2 border-transparent transition delay-75 duration-150 ease-in-out 
+								hover:bg-pearl-bush-200 hover:text-red-ribbon-500 hover:shadow-red-ribbon-500/50 hover:shadow-lg 
+								hover:scale-120 w-40 h-12 cursor-pointer
+								max-sm:scale-100 max-sm:hover:scale-105
+								max-sm:active:bg-pearl-bush-200 max-sm:active:text-red-ribbon-500 max-sm:active:scale-95"
+								onClick={() => {
+									setDifficulty("hard");
+									setShowDifficultyModal(false);
+								}}
+							>
+								Hard
+							</button>
+						</motion.div>
+					</div>
 				)}
 			</AnimatePresence>
 
 			<AnimatePresence>
 				{showWinnerModal && (
-					<motion.div
-						className="absolute w-160 h-180 bg-cod-gray-950 border-3 border-pearl-bush-200 
-            			rounded-2xl flex flex-col items-center justify-center shadow-2xl shadow-pearl-bush-200/50"
-						initial={{ scale: 0.5, opacity: 0 }}
-						animate={{ scale: 1, opacity: 1 }}
-						exit={{ scale: 0.5, opacity: 0 }}
-						transition={{
-							type: "spring",
-							stiffness: 300,
-							damping: 20,
-							mass: 0.8,
-						}}
-					>
-						<p
-							className="scale-125 text-4xl text-pearl-bush-200 font-ubuntu 
-                			font-bold flex items-center justify-center gap-3 mb-15"
-						>
-							{winner === null ? (
-								"Draw!"
-							) : (
-								<>
-									Player{" "}
-									{winner === "X" ? (
-										<X
-											size={50}
-											strokeWidth={3}
-											className="text-red-ribbon-500"
-										/>
-									) : (
-										<Circle
-											size={50}
-											strokeWidth={3}
-											className="text-red-ribbon-500"
-										/>
-									)}{" "}
-									has won!
-								</>
-							)}
-						</p>
-
-						<button
-							className="scale-125 font-bungee text-pearl-bush-200 text-[18px] bg-red-ribbon-500 bg-center 
-							rounded-lg p-2 border-transparent transition delay-75 duration-150 ease-in-out 
-							hover:bg-pearl-bush-200 hover:text-red-ribbon-500 hover:shadow-red-ribbon-500/50 hover:shadow-lg 
-							hover:scale-135 w-40 h-12 cursor-pointer mb-5"
-							onClick={() => resetBoard()}
-						>
-							Restart
-						</button>
-						<br />
-						<button
-							className="scale-125 font-bungee text-pearl-bush-200 text-[18px] bg-sky-600 bg-center 
-							rounded-lg p-2 border-transparent transition delay-75 duration-150 ease-in-out 
-							hover:bg-pearl-bush-200 hover:text-sky-600 hover:shadow-sky-600/50 hover:shadow-lg 
-							hover:scale-135 w-40 h-12 cursor-pointer"
-							onClick={() => {
-								resetBoard();
-								setShowDifficultyModal(true);
+					<div className="fixed inset-0 z-50 flex items-center justify-center max-sm:bg-cod-gray-950">
+						<motion.div
+							className="absolute w-160 h-180 bg-cod-gray-950 border-3 border-pearl-bush-200 
+	            			rounded-2xl flex flex-col items-center justify-center shadow-2xl shadow-pearl-bush-200/50
+							max-sm:relative max-sm:w-[92vw] max-sm:h-auto max-sm:py-16 max-sm:px-6"
+							initial={{ scale: 0.5, opacity: 0 }}
+							animate={{ scale: 1, opacity: 1 }}
+							exit={{ scale: 0.5, opacity: 0 }}
+							transition={{
+								type: "spring",
+								stiffness: 300,
+								damping: 20,
+								mass: 0.8,
 							}}
 						>
-							Main Menu
-						</button>
-					</motion.div>
+							<p
+								className="scale-125 text-4xl text-pearl-bush-200 font-ubuntu 
+                			font-bold flex items-center justify-center gap-3 mb-15
+							max-sm:scale-100 max-sm:text-xl max-sm:mb-8 max-sm:flex-wrap max-sm:justify-center max-sm:text-center max-sm:gap-2"
+							>
+								{winner === null ? (
+									"Draw!"
+								) : (
+									<>
+										Player{" "}
+										{winner === "X" ? (
+											<X
+												size={50}
+												strokeWidth={3}
+												className="text-red-ribbon-500"
+											/>
+										) : (
+											<Circle
+												size={50}
+												strokeWidth={3}
+												className="text-red-ribbon-500"
+											/>
+										)}{" "}
+										has won!
+									</>
+								)}
+							</p>
+
+							<button
+								className="scale-125 font-bungee text-pearl-bush-200 text-[18px] bg-red-ribbon-500 bg-center 
+								rounded-lg p-2 border-transparent transition delay-75 duration-150 ease-in-out 
+								hover:bg-pearl-bush-200 hover:text-red-ribbon-500 hover:shadow-red-ribbon-500/50 hover:shadow-lg 
+								hover:scale-135 w-40 h-12 cursor-pointer mb-5
+								max-sm:scale-100 max-sm:hover:scale-105
+								max-sm:active:bg-pearl-bush-200 max-sm:active:text-red-ribbon-500 max-sm:active:scale-95"
+								onClick={() => resetBoard()}
+							>
+								Restart
+							</button>
+							<br />
+							<button
+								className="scale-125 font-bungee text-pearl-bush-200 text-[18px] bg-sky-600 bg-center 
+								rounded-lg p-2 border-transparent transition delay-75 duration-150 ease-in-out 
+								hover:bg-pearl-bush-200 hover:text-sky-600 hover:shadow-sky-600/50 hover:shadow-lg 
+								hover:scale-135 w-40 h-12 cursor-pointer
+								max-sm:scale-100 max-sm:hover:scale-105
+								max-sm:active:bg-pearl-bush-200 max-sm:active:text-sky-600 max-sm:active:scale-95"
+								onClick={() => {
+									resetBoard();
+									setShowDifficultyModal(true);
+								}}
+							>
+								Main Menu
+							</button>
+						</motion.div>
+					</div>
 				)}
 			</AnimatePresence>
 
@@ -414,13 +438,10 @@ export default function Game() {
 				href="https://github.com/MosabbirAhmed125/Tic_Tac_Toe"
 				target="_blank"
 				rel="noopener noreferrer"
-				className="absolute left-10 bottom-10 flex items-center gap-2 text-red-ribbon-500 text-md font-ubuntu font-bold hover:underline hover:underline-offset-4"
+				className="flex fixed bottom-6 left-1/2 -translate-x-1/2 z-50 items-center gap-3 text-red-ribbon-500 text-base font-ubuntu font-bold hover:underline hover:underline-offset-4"
 			>
-				<div
-					className="w-6 h-6 bg-pearl-bush-200 text-cod-gray-950 
-					flex items-center justify-center rounded-md"
-				>
-					<img src="github.svg" alt="GitHub" className="w-4 h-4" />
+				<div className="w-8 h-8 bg-pearl-bush-200 flex items-center justify-center rounded-md">
+					<img src="/github.svg" alt="GitHub" className="w-5 h-5" />
 				</div>
 				View Source Code
 			</a>

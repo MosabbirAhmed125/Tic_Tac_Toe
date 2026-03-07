@@ -1,82 +1,48 @@
 import { motion } from "framer-motion";
 
 export default function WinningLines({ winnerLine }) {
-	const LINE_COLOR = "bg-red-ribbon-500";
+	if (!winnerLine) return null;
 
-	const lines = {
-		row0: (
-			<motion.span
-				className={`absolute top-18 left-3 ${LINE_COLOR} w-114 h-3 rounded-xl`}
-				initial={{ scaleX: 0 }}
-				animate={{ scaleX: 1 }}
-				transition={{ duration: 0.5 }}
-			/>
-		),
-		row1: (
-			<motion.span
-				className={`absolute left-3 ${LINE_COLOR} w-114 h-3 rounded-xl top-1/2 -translate-y-1/2`}
-				initial={{ scaleX: 0 }}
-				animate={{ scaleX: 1 }}
-				transition={{ duration: 0.5 }}
-			/>
-		),
-		row2: (
-			<motion.span
-				className={`absolute bottom-19 left-3 ${LINE_COLOR} w-114 h-3 rounded-xl`}
-				initial={{ scaleX: 0 }}
-				animate={{ scaleX: 1 }}
-				transition={{ duration: 0.5 }}
-			/>
-		),
-		col0: (
-			<motion.span
-				className={`absolute top-3 bottom-3 left-18.5 ${LINE_COLOR} w-3 rounded-xl`}
-				initial={{ scaleY: 0 }}
-				animate={{ scaleY: 1 }}
-				transition={{ duration: 0.5 }}
-			/>
-		),
-		col1: (
-			<motion.span
-				className={`absolute top-3 bottom-3 left-58.5 ${LINE_COLOR} w-3 rounded-xl`}
-				initial={{ scaleY: 0 }}
-				animate={{ scaleY: 1 }}
-				transition={{ duration: 0.5 }}
-			/>
-		),
-		col2: (
-			<motion.span
-				className={`absolute top-3 bottom-3 left-98.5 ${LINE_COLOR} w-3 rounded-xl`}
-				initial={{ scaleY: 0 }}
-				animate={{ scaleY: 1 }}
-				transition={{ duration: 0.5 }}
-			/>
-		),
-		diag0: (
-			<motion.span
-				className={`absolute top-2 left-4 ${LINE_COLOR} w-160 h-3 rounded-xl rotate-45 origin-top-left`}
-				initial={{ scaleX: 0 }}
-				animate={{ scaleX: 1 }}
-				transition={{ duration: 0.5 }}
-			/>
-		),
-		diag1: (
-			<motion.span
-				className={`absolute top-2 right-4 ${LINE_COLOR} w-160 h-3 rounded-xl -rotate-45 origin-top-right`}
-				initial={{ scaleX: 0 }}
-				animate={{ scaleX: 1 }}
-				transition={{ duration: 0.5 }}
-			/>
-		),
+	const [type, index] = winnerLine;
+
+	const lineMap = {
+		row: [
+			{ x1: 0.08, y1: 0.5, x2: 2.92, y2: 0.5 },
+			{ x1: 0.08, y1: 1.5, x2: 2.92, y2: 1.5 },
+			{ x1: 0.08, y1: 2.5, x2: 2.92, y2: 2.5 },
+		],
+		col: [
+			{ x1: 0.5, y1: 0.08, x2: 0.5, y2: 2.92 },
+			{ x1: 1.5, y1: 0.08, x2: 1.5, y2: 2.92 },
+			{ x1: 2.5, y1: 0.08, x2: 2.5, y2: 2.92 },
+		],
+		diag: [
+			{ x1: 0.12, y1: 0.12, x2: 2.88, y2: 2.88 },
+			{ x1: 2.88, y1: 0.12, x2: 0.12, y2: 2.88 },
+		],
 	};
 
-	let lineKey = null;
-	if (winnerLine) {
-		const [type, index] = winnerLine;
-		if (type === "row") lineKey = `row${index}`;
-		if (type === "col") lineKey = `col${index}`;
-		if (type === "diag") lineKey = `diag${index}`;
-	}
+	const coords = lineMap[type]?.[index];
+	if (!coords) return null;
 
-	return <>{lineKey && lines[lineKey]}</>;
+	return (
+		<svg
+			className="absolute inset-0 w-full h-full pointer-events-none"
+			viewBox="0 0 3 3"
+			preserveAspectRatio="none"
+		>
+			<motion.line
+				x1={coords.x1}
+				y1={coords.y1}
+				x2={coords.x2}
+				y2={coords.y2}
+				stroke="#e83c49"
+				strokeWidth="0.12"
+				strokeLinecap="round"
+				initial={{ pathLength: 0, opacity: 0 }}
+				animate={{ pathLength: 1, opacity: 1 }}
+				transition={{ duration: 0.5, ease: "easeInOut" }}
+			/>
+		</svg>
+	);
 }

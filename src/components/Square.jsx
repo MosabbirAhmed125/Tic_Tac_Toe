@@ -6,7 +6,8 @@ export default function Square({ value, onClick, className }) {
 		<div
 			className={`w-40 h-40 bg-transparent border-3 border-pearl-bush-200
 			font-ubuntu font-bold text-6xl text-pearl-bush-200 flex flex-col 
-			items-center justify-center ${className}`}
+			items-center justify-center
+			max-sm:w-[30vw] max-sm:h-[30vw] ${className}`}
 			onClick={onClick}
 		>
 			<AnimatePresence>
@@ -22,7 +23,10 @@ export default function Square({ value, onClick, className }) {
 							damping: 20,
 						}}
 					>
-						<X size={100} strokeWidth={3} />
+						<X
+							className="w-25 h-25 max-sm:w-[18vw] max-sm:h-[18vw]"
+							strokeWidth={3}
+						/>
 					</motion.div>
 				)}
 				{value === "O" && (
@@ -37,7 +41,10 @@ export default function Square({ value, onClick, className }) {
 							damping: 20,
 						}}
 					>
-						<Circle size={100} strokeWidth={3} />
+						<Circle
+							className="w-25 h-25 max-sm:w-[18vw] max-sm:h-[18vw]"
+							strokeWidth={3}
+						/>
 					</motion.div>
 				)}
 			</AnimatePresence>
