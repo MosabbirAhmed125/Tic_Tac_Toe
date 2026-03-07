@@ -1,4 +1,4 @@
-# Tic Tac Toe AI (React)
+# Tic Tac Toe (React.js)
 
 A modern **Tic Tac Toe game with AI opponents and difficulty levels**, built using **React**, **TailwindCSS**, and **Vercel** for deployment.
 
@@ -38,8 +38,8 @@ Minimax evaluates all possible future board states and assigns scores:
 | Result | Score |
 |------|------|
 | AI wins | +1 |
-| Player wins | -1 |
-| Draw | 0 |
+| Player wins |  -1 |
+| Draw |  0 |
 
 The algorithm simulates all possible moves recursively and chooses the move that leads to the **best guaranteed outcome**.
 
